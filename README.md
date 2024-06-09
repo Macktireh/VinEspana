@@ -1,4 +1,4 @@
-# Viticoles Espagnoles
+# Viticoles Espagnoles | Chellenges Docstring
 
 Cette application est une carte interactive qui affiche les emplacements des différentes régions viticoles espagnoles. La carte utilise `TkinterMapView` pour le rendu et `CustomTkinter` pour les éléments de l'interface graphique. Les utilisateurs peuvent cliquer sur les boutons dans la barre latérale pour zoomer sur des régions spécifiques et voir les marqueurs indiquant leurs emplacements. Chaque marqueur est personnalisé avec une icône représentant le type de vin produit dans cette région (rouge ou blanc).
 
