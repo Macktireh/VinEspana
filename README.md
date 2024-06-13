@@ -9,6 +9,7 @@ Cette application est une carte interactive qui affiche les emplacements des dif
 - Marqueurs indiquant les emplacements des différentes régions viticoles.
 - Barre latérale avec des boutons pour zoomer sur des régions spécifiques.
 - Icônes personnalisées pour les régions viticoles rouges et blanches.
+- Option de changement de thème (mode sombre ou clair) par défaut selon les préférences du système.
 
 
 ## Demo
