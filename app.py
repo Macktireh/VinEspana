@@ -1,11 +1,9 @@
 from tkinter import BOTH, RIGHT
 
-from customtkinter import CTk, set_appearance_mode
+from customtkinter import CTk
 
-from config.settings import APP_NAME, Theme
+from config.settings import APP_NAME
 from screens.home_screen import HomeScreen
-
-set_appearance_mode(Theme.SYSTEM)
 
 
 class App(CTk):

@@ -3,6 +3,7 @@ from tkinter import TOP, W, X
 
 from customtkinter import CTkBaseClass, CTkButton, CTkScrollableFrame
 
+from components.theme_switcher import ThemeSwitcher
 from config.settings import Color
 
 
@@ -14,6 +15,9 @@ class SideBar(CTkScrollableFrame):
         self.btn_active = None
 
         super().__init__(master=self.master, width=width, height=height, fg_color=Color.BG_NAVIGATION)
+
+        self.theme_swither = ThemeSwitcher(master=self)
+        self.theme_swither.pack(side=TOP, fill=X, padx=8, pady=5)
 
     def add_button(self, text: str, command: Callable) -> None:
         btn = CTkButton(
@@ -31,6 +35,6 @@ class SideBar(CTkScrollableFrame):
 
     def set_active_button(self, region: str) -> None:
         if self.btn_active:
-            self.btn_active.configure(fg_color=Color.BG_CARD)
+            self.btn_active.configure(fg_color=Color.BG_CARD, text_color=Color.TEXT)
         self.btn_active = self.btns[region]
-        self.btn_active.configure(fg_color=Color.BG_ACTIVE_BUTTON_NAVIGATION)
+        self.btn_active.configure(fg_color=Color.BG_ACTIVE_BUTTON_NAVIGATION, text_color=Color.WHITE)
