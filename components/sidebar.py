@@ -16,8 +16,7 @@ class SideBar(CTkScrollableFrame):
 
         super().__init__(master=self.master, width=width, height=height, fg_color=Color.BG_NAVIGATION)
 
-        self.theme_swither = ThemeSwitcher(master=self)
-        self.theme_swither.pack(side=TOP, fill=X, padx=8, pady=5)
+        ThemeSwitcher(master=self).pack(side=TOP, fill=X, padx=8, pady=5)
 
     def add_button(self, text: str, command: Callable) -> None:
         btn = CTkButton(
