@@ -4,12 +4,14 @@ from customtkinter import CTkBaseClass, CTkFrame
 
 from components.mapview import MapView
 from components.sidebar import SideBar
-from config.settings import DO_VINOS, Color, MetaData
+from config.settings import Color, MetaData
+from services.wine_service import WineService
 
 
 class HomeScreen(CTkFrame):
-    def __init__(self, master: CTkBaseClass, width: int, height: int) -> None:
+    def __init__(self, master: CTkBaseClass, width: int, height: int, wine_service: WineService) -> None:
         self.master = master
+        self.wine_service = wine_service
 
         super().__init__(master=self.master, width=width, height=height, fg_color=Color.BG_CONTENT)
 
@@ -21,7 +23,7 @@ class HomeScreen(CTkFrame):
         self.sidebar.pack(side=RIGHT, fill=Y)
 
         self.sidebar.add_button(MetaData.COUNTRY_NAME, lambda region=MetaData.COUNTRY_NAME: self.reset_zoom(region))
-        for region, (coords, _) in DO_VINOS.items():
+        for region, (coords, _) in self.wine_service.get_wines().items():
             self.sidebar.add_button(region, lambda c=coords, r=region: self.zoom_to_region(c, r))
 
     def _display_mapview(self, width: int, height: int) -> None:
@@ -32,7 +34,7 @@ class HomeScreen(CTkFrame):
         )
         self.mapview.pack(fill=BOTH, expand=True, side=LEFT)
         self.reset_zoom(MetaData.COUNTRY_NAME)
-        self.mapview.place_markers(DO_VINOS)
+        self.mapview.place_markers(self.wine_service.get_wines())
 
     def zoom_to_region(self, coords: tuple[float, float], region: str) -> None:
         self.sidebar.set_active_button(region)

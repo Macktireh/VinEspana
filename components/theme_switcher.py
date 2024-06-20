@@ -1,8 +1,7 @@
 from tkinter import X
-from typing import Literal
 
-import darkdetect
 from customtkinter import CTkBaseClass, CTkFrame, CTkSwitch, StringVar, set_appearance_mode
+from darkdetect import theme as get_system_theme
 
 from config.settings import Color, Theme
 
@@ -10,7 +9,7 @@ from config.settings import Color, Theme
 class ThemeSwitcher(CTkFrame):
     def __init__(self, master: CTkBaseClass, default_theme: Theme = Theme.SYSTEM, **kwargs) -> None:
         super().__init__(master=master, fg_color=Color.BG_NAVIGATION, **kwargs)
-        self._theme = default_theme.capitalize() if default_theme != Theme.SYSTEM else self.get_system_theme()
+        self._theme = default_theme.capitalize() if default_theme != Theme.SYSTEM else get_system_theme()
 
         self.theme_var = StringVar(value=self._theme)
 
@@ -29,6 +28,3 @@ class ThemeSwitcher(CTkFrame):
     def change_theme(self) -> None:
         set_appearance_mode(self.theme_var.get().lower())
         self.switch.configure(text=f"{self.theme_var.get()} Mode")
-
-    def get_system_theme(self) -> Literal["Dark", "Light"]:
-        return (Theme.DARK if darkdetect.theme() == "Dark" else Theme.LIGHT).capitalize()
