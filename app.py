@@ -4,6 +4,7 @@ from customtkinter import CTk
 
 from config.settings import MetaData
 from screens.home_screen import HomeScreen
+from services.wine_service_impl import InMemoryWineService
 
 
 class App(CTk):
@@ -17,6 +18,7 @@ class App(CTk):
             master=self,
             width=self._current_width,
             height=self._current_height,
+            wine_service=InMemoryWineService(),
         )
         self.home_screen.pack(side=RIGHT, fill=BOTH, expand=True)
 
